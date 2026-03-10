@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Clinician Dashboard - Cogniscan{% endblock %}
+
+{% block main_class %}main-container--dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+  <div class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-icon">&#128203;</span> Clinician Workspace
+    </div>
+    <div class="topbar-actions">
+      {% if last_result %}
+        <span class="topbar-badge">{{ last_result.prediction }} ({{ "%.0f"|format((last_result.confidence or 0) * 100) }}%)</span>
+      {% else %}
+        <span class="topbar-badge">Clinician</span>
+      {% endif %}
+      &nbsp;&nbsp;
+      <a href="{{ url_for('logout') }}" class="topbar-logout">&#128682; Logout</a>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <h3 class="section-title"><span class="section-icon">&#128196;</span> Upload MRI Scan</h3>
+    <div class="upload-zone">
+      <div class="upload-zone-inner">
+        <span class="upload-icon">&#128247;</span>
+        <p class="upload-title">Drag and drop MRI files</p>
+        <p class="upload-hint">Supports PNG or JPG formats</p>
+      </div>
+      <form method="post" action="{{ url_for('clinician_upload') }}" enctype="multipart/form-data" class="upload-form">
+        <label class="select-file-btn">
+          <input type="file" name="mri_file" accept="image/png,image/jpeg,image/jpg" required>
+          &#128269; Select File
+        </label>
+        <button class="primary-btn run-analysis-btn" type="submit">&#128200; Run Analysis</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <h3 class="section-title"><span class="section-icon">&#128202;</span> Prediction Results</h3>
+    <div class="results-row">
+      <div class="result-scan-panel">
+        <p class="small-label">Processed Scan</p>
+        {% if last_result and last_result.file_name %}
+          <img src="{{ url_for('serve_upload', filename=last_result.file_name) }}" alt="MRI scan" class="scan-preview">
+        {% else %}
+          <div class="scan-placeholder">
+            <span class="placeholder-icon">&#128196;</span>
+            <p>Upload and run analysis to see the processed scan.</p>
+          </div>
+        {% endif %}
+      </div>
+      <div class="result-prediction-panel">
+        {% if last_result and last_result.prediction %}
+          <p class="small-label">Predicted Class</p>
+          <h4 class="predicted-class">{{ last_result.prediction }} <span class="predicted-pct">{{ "%.1f"|format((last_result.confidence or 0) * 100) }}%</span></h4>
+          <p class="confidence-note">The model shows high confidence in this classification.</p>
+          <div class="prob-bars">
+            {% for name, pct in (last_result.probabilities_sorted or []) %}
+              <div class="prob-bar-row">
+                <span class="prob-bar-label">{{ name }}</span>
+                <span class="prob-bar-value">{{ "%.1f"|format(pct * 100) }}%</span>
+                <div class="prob-bar-track"><div class="prob-bar-fill" style="width: {{ pct * 100 }}%"></div></div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="small-label">Confidence Bands</p>
+          <p class="no-results-msg">Detailed probability breakdown (Normal, MCI, Alzheimer's) will appear here after you run an analysis.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <h3 class="section-title"><span class="section-icon">&#10148;</span> Send Results to Patient</h3>
+    <form class="send-results-form" method="post" action="{{ url_for('clinician_send_results') }}">
+      <div class="form-row-2">
+        <div class="form-group">
+          <label class="section-label">Patient ID</label>
+          <input type="text" class="auth-input" placeholder="e.g. P-3 (from patient's portal)" name="patient_id">
+          <p class="form-hint">Ask the patient for their ID, shown in their portal as "Your Patient ID: P-X"</p>
+        </div>
+        <div class="form-group">
+          <label class="section-label">Patient Summary</label>
+          <select class="auth-input" name="patient_summary">
+            <option>No urgent findings — routine follow-up</option>
+            <option>Routine monitoring recommended</option>
+            <option>Follow-up consultation advised</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="section-label">Doctor's Note</label>
+        <textarea class="auth-textarea" placeholder="Write a brief patient-friendly note here..." name="doctors_note" rows="4"></textarea>
+        <p class="form-hint">Use supportive, non-alarming language. The patient does not see model probabilities.</p>
+      </div>
+      <button type="submit" class="primary-btn send-results-btn">&#10148; Send Results</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

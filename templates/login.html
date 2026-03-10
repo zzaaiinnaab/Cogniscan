@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Cogniscan{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+  <div class="auth-header">
+    <h1 class="auth-title" style="color: #ffffff;">Welcome Back</h1>
+    <p class="auth-subtitle" style="color: rgba(255,255,255,0.85);">
+      Access your MRI analysis dashboard.
+    </p>
+  </div>
+  <div class="auth-card-inner">
+    <div class="role-toggle" style="margin-bottom: 1.2rem;">
+      <label class="role-pill">
+        <input type="radio" name="login_role" value="clinician" checked>
+        <span class="role-label">Clinician</span>
+      </label>
+      <label class="role-pill">
+        <input type="radio" name="login_role" value="patient">
+        <span class="role-label">Patient</span>
+      </label>
+    </div>
+
+    <h2 class="auth-title" style="font-size: 1.05rem; margin-top: 0.2rem;">Clinician Login</h2>
+    <p class="auth-subtitle" style="font-size: 0.8rem; margin-top: 0.3rem;">
+      Enter your credentials to continue.
+    </p>
+
+    <form method="post" action="{{ url_for('login') }}">
+      <div class="section-label">Email or ID</div>
+      <input class="auth-input" type="email" name="email" placeholder="Enter your ID or email" required>
+
+      <div class="section-label">Password</div>
+      <input class="auth-input" type="password" name="password" placeholder="Enter your password" required>
+
+      <button class="primary-btn" type="submit">Login</button>
+    </form>
+
+    <div class="secondary-link">
+      Don't have an account? <span><a href="{{ url_for('register') }}">Create Account</a></span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,25 @@
+# Virtual environment
+venv/
+venv/**
+
+# Python cache
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Streamlit cache
+.streamlit/
+
+# Model weights (other formats)
+model/*.keras
+model/*.h5
+
+# Environment variables
+.env
+
+# Local database and uploaded files
+cogniscan.db
+uploads/
+uploads/**

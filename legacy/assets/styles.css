@@ -1,0 +1,256 @@
+/* ---------- Global ---------- */
+html, body, [data-testid="stAppViewContainer"] {
+  background: #f6f3f5;
+}
+
+[data-testid="stHeader"] {
+  background: transparent;
+}
+
+[data-testid="stSidebar"] {
+  display: none;
+}
+
+.main .block-container {
+  max-width: 1150px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* ---------- Auth Pages ---------- */
+.auth-page {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.auth-circle-top {
+  position: fixed;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(244, 196, 235, 0.35);
+  top: 110px;
+  left: 90px;
+  z-index: 0;
+}
+
+.auth-circle-bottom {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(244, 196, 235, 0.35);
+  bottom: 60px;
+  right: 120px;
+  z-index: 0;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 430px;
+  background: transparent;
+  border-radius: 22px;
+  box-shadow: none;
+  overflow: visible;
+  position: relative;
+  z-index: 2;
+  margin: 2rem auto 0 auto;
+}
+
+.auth-card-body {
+  padding: 1.8rem 1.6rem 1.7rem 1.6rem;
+}
+
+.auth-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+  color: #252525;
+}
+
+.auth-subtitle {
+  margin: 0.4rem 0 0 0;
+  font-size: 0.86rem;
+  text-align: center;
+  color: #9a8fa0;
+}
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: #444;
+}
+
+.helper-text {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #888;
+  margin-top: 0.7rem;
+}
+
+/* ---------- Segmented Role Toggle ---------- */
+.role-toggle-wrap {
+  background: #f4edf1;
+  border-radius: 999px;
+  padding: 4px;
+  display: flex;
+  gap: 4px;
+  margin-bottom: 1rem;
+}
+
+.role-pill {
+  flex: 1;
+  border-radius: 999px;
+  text-align: center;
+  padding: 0.45rem 0.3rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: none;
+}
+
+.role-pill-active {
+  background: white;
+  color: #ff2dbf;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.role-pill-inactive {
+  background: transparent;
+  color: #8d8d8d;
+}
+
+/* ---------- Inputs ---------- */
+div[data-baseweb="input"] > div,
+div[data-baseweb="select"] > div {
+  background: #f5f3f4 !important;
+  border-radius: 999px !important;
+  border: 1px solid #f0ecef !important;
+}
+
+textarea {
+  border-radius: 14px !important;
+}
+
+/* ---------- Buttons ---------- */
+.stButton > button,
+.stFormSubmitButton > button {
+  width: 100%;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, #ff20bf 0%, #d81db7 100%) !important;
+  color: white !important;
+  border: none !important;
+  font-weight: 700 !important;
+  padding: 0.72rem 1rem !important;
+  box-shadow: 0 8px 18px rgba(255, 32, 191, 0.22) !important;
+}
+
+.secondary-link {
+  text-align: center;
+  font-size: 0.82rem;
+  margin-top: 0.8rem;
+  color: #777;
+}
+
+.secondary-link span {
+  color: #ff2dbf;
+  font-weight: 600;
+}
+
+/* ---------- Dashboard ---------- */
+.topbar {
+  background: white;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border: 1px solid #f0e8ee;
+}
+
+.topbar-left {
+  font-weight: 700;
+  color: #d61cb1;
+}
+
+.topbar-badge {
+  background: #fde6f6;
+  color: #d61cb1;
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.section-card {
+  background: white;
+  border-radius: 24px;
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.05);
+}
+
+.section-card h3 {
+  margin-top: 0;
+}
+
+.upload-zone {
+  background: #f9edf5;
+  border: 2px dashed #e8c7db;
+  border-radius: 24px;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.result-highlight {
+  background: #fdeef7;
+  border-radius: 20px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.results-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1rem;
+}
+
+.note-panel {
+  background: #fdf1f8;
+  border-radius: 24px;
+  padding: 1.2rem;
+}
+
+.table-like-row {
+  background: #fdeff7;
+  border-radius: 18px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.small-label {
+  color: #d61cb1;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-pill {
+  display: inline-block;
+  background: #e9fff0;
+  color: #2f9a58;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}

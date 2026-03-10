@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Cogniscan{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+  <div class="auth-header">
+    <h1 class="auth-title" style="color: #ffffff;">Create Account</h1>
+    <p class="auth-subtitle" style="color: rgba(255,255,255,0.85);">
+      Set up your secure Cogniscan account.
+    </p>
+  </div>
+  <div class="auth-card-inner">
+
+    <form method="post" action="{{ url_for('register') }}">
+      <div class="section-label">Select Role</div>
+      <div class="role-toggle">
+        <label class="role-pill">
+          <input type="radio" name="role" value="clinician" checked>
+          <span class="role-label">Clinician</span>
+        </label>
+        <label class="role-pill">
+          <input type="radio" name="role" value="patient">
+          <span class="role-label">Patient</span>
+        </label>
+      </div>
+
+      <div class="section-label">Email</div>
+      <input class="auth-input" type="email" name="email" placeholder="Enter your email" required>
+
+      <div class="section-label">Password</div>
+      <input class="auth-input" type="password" name="password" placeholder="Create a password" required>
+
+      <div class="section-label">Confirm Password</div>
+      <input class="auth-input" type="password" name="confirm_password" placeholder="Repeat your password" required>
+
+      <button class="primary-btn" type="submit">Create Account</button>
+    </form>
+
+    <div class="secondary-link">
+      ← Back to <span><a href="{{ url_for('login') }}">Login</a></span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

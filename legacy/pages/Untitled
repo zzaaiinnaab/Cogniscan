@@ -1,0 +1,27 @@
+import streamlit as st
+from utils.ui import load_css
+
+st.set_page_config(page_title="Patient Portal | Cogniscan", page_icon="🧠", layout="wide")
+load_css()
+
+if not st.session_state.get("logged_in") or st.session_state.get("role") != "patient":
+    st.error("Access denied. Please log in as a patient.")
+    st.stop()
+
+st.title("Patient Portal")
+st.caption("View your results and your clinician’s note.")
+
+left, right = st.columns([1, 1])
+
+with left:
+    st.markdown("<div class='cogniscan-card'>", unsafe_allow_html=True)
+    st.subheader("Your Recent Results")
+    st.write("• No results yet (will load from database later).")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+with right:
+    st.markdown("<div class='cogniscan-card'>", unsafe_allow_html=True)
+    st.subheader("Doctor’s Note")
+    st.write("Your clinician’s note will appear here.")
+    st.button("Book a Follow-Up Chat")
+    st.markdown("</div>", unsafe_allow_html=True)

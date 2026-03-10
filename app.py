@@ -1,6 +1,7 @@
 from pathlib import Path
 from datetime import date
 import os
+import sqlite3
 
 import json
 from flask import Flask, render_template, redirect, url_for, session, request, flash, send_from_directory
@@ -55,8 +56,11 @@ def register():
 
         try:
             create_user(email, password, role)
+        except sqlite3.IntegrityError:
+            flash("That email is already registered. Try logging in instead.", "error")
+            return render_template("register.html")
         except Exception:
-            flash("Could not create account. Email may already be registered.", "error")
+            flash("Could not create account. Please try again.", "error")
             return render_template("register.html")
 
         flash("Account created. Please log in.", "success")

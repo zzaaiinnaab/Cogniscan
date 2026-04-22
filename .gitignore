@@ -23,3 +23,6 @@ model/*.h5
 cogniscan.db
 uploads/
 uploads/**
+
+# Cursor IDE files
+.cursor/

@@ -10,7 +10,7 @@ import numpy as np
 
 MODEL_DIR = Path(__file__).parent.parent / "model"
 # Prefer your ResNet18 model; fallback to any .pt in model/
-MODEL_PATH = MODEL_DIR / "best_model_resnet18_cn_mci_ad.pt"
+MODEL_PATH = MODEL_DIR / "best_model_resnet18_cn_mci_ad (1).pt"
 if not MODEL_PATH.exists():
     MODEL_PATH = next((f for f in MODEL_DIR.glob("*.pt")), None)
 
